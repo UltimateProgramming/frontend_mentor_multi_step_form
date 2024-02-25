@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import { useFormStore } from '@/stores/form-store';
+
+const formStore = useFormStore();
+
 const props = withDefaults(
   defineProps<{
-    currentStep: number
-    maxSteps: number
     direction: 'row' | 'column'
   }>(),
-  { currentStep: 1, maxSteps: 1, direction: 'row' }
+  { direction: 'row' }
 )
+
+
 </script>
 
 <template>
   <div class="stepper" :class="direction === 'row' ? 'row' : 'column'">
     <div
-      v-for="steps of maxSteps"
+      v-for="steps of formStore.maxSteps"
       :key="steps"
       class="badge"
-      :class="currentStep === steps ? 'selected' : ''"
+      :class="formStore.currentStep === steps ? 'selected' : ''"
     >
       <span>{{ steps }}</span>
     </div>

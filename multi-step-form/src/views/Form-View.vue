@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import StepperComponent from '@/components/Stepper-Component.vue';
 import FormNavigation from '@/components/Form-Navigation.vue';
+import {useFormStore } from '../stores/form-store';
+
+const formStore = useFormStore();
+formStore.maxSteps = 4;
 </script>
 
 <template>
   <div class="content">
     <div class="stepper-wrapper">
-      <StepperComponent :maxSteps="4" :direction="'row'"></StepperComponent>
+      <StepperComponent :maxSteps="formStore.maxSteps" :direction="'row'"></StepperComponent>
     </div>
     <div class="card">
       <p>TEST</p>
