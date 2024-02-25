@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import StepperComponent from '@/components/Stepper-Component.vue';
 import FormNavigation from '@/components/Form-Navigation.vue';
+import PersonalInfoView from './Personal-Info-View.vue';
 import {useFormStore } from '../stores/form-store';
 
 const formStore = useFormStore();
@@ -13,7 +14,7 @@ formStore.maxSteps = 4;
       <StepperComponent :maxSteps="formStore.maxSteps" :direction="'row'"></StepperComponent>
     </div>
     <div class="card">
-      <p>TEST</p>
+      <PersonalInfoView v-if="formStore.currentStep === 1"></PersonalInfoView>
     </div>
   </div>
   <FormNavigation></FormNavigation>
