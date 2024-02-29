@@ -16,7 +16,7 @@ const formStore = useFormStore();
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
   background-color: var(--white);
   width: 100%;

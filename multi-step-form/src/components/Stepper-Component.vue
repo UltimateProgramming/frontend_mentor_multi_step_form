@@ -26,7 +26,7 @@ const props = withDefaults(
   </div>
 </template>
 
-<style>
+<style scoped>
 .stepper {
   display: flex;
 }
