@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useFormStore } from '@/stores/form-store';
 import type { Plan } from '../models/plan'
+import { PlanEnum } from '@/enums/PlanEnum';
 
 const iconBaseUrl = 'src/assets/images'
 
@@ -7,19 +9,24 @@ const plans: Plan[] = [
   {
     iconUrl: `${iconBaseUrl}/icon-arcade.svg`,
     title: 'Arcade',
-    priceTag: '$9/mo'
+    priceTagPerMonth: '$9/mo',
+    priceTagPerYear: '$90/yr'
   },
   {
     iconUrl: `${iconBaseUrl}/icon-advanced.svg`,
     title: 'Advanced',
-    priceTag: '$12/mo'
+    priceTagPerMonth: '$12/mo',
+    priceTagPerYear: '$120/yr'
   },
   {
     iconUrl: `${iconBaseUrl}/icon-pro.svg`,
     title: 'Pro',
-    priceTag: '$15/mo'
+    priceTagPerMonth: '$15/mo',
+    priceTagPerYear: '$150/yr'
   }
 ]
+
+const formStore = useFormStore();
 </script>
 
 <template>
@@ -27,7 +34,7 @@ const plans: Plan[] = [
     <img :src="plan.iconUrl" :alt="plan.title" />
     <div class="text-wrapper">
       <p class="title">{{ plan.title }}</p>
-      <p class="price">{{ plan.priceTag }}</p>
+      <p class="price">{{ formStore.plan === PlanEnum.Month ? plan.priceTagPerMonth : plan.priceTagPerYear}}</p>
     </div>
   </div>
 </template>

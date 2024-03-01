@@ -1,5 +1,6 @@
 export interface Plan {
   iconUrl: string
   title: string
-  priceTag: string
+  priceTagPerMonth: string
+  priceTagPerYear: string
 }
