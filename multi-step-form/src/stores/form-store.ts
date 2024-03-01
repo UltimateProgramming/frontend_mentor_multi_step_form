@@ -1,12 +1,8 @@
 import { defineStore } from 'pinia'
-
-enum Plan {
-  Month = 'monthly',
-  Year = 'yearly'
-}
+import { PlanEnum } from '@/enums/PlanEnum'
 
 export const useFormStore = defineStore('formStore', {
-  state: () => ({ currentStep: 1, maxSteps: 1, plan: Plan.Month }),
+  state: () => ({ currentStep: 1, maxSteps: 1, plan: PlanEnum.Month }),
   actions: {
     nextStep() {
       if (this.currentStep < this.maxSteps) {
@@ -18,6 +14,10 @@ export const useFormStore = defineStore('formStore', {
       if (this.currentStep > 1) {
         this.currentStep -= 1
       }
+    },
+
+    changePlan(newPlan: PlanEnum) {
+      this.plan = newPlan
     }
   }
 })
