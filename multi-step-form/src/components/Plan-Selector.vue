@@ -3,10 +3,10 @@
 <template>
   <div class="plan-selector">
     <p>Monthly</p>
-    <div class="checkbox">
+    <label class="checkbox">
         <input type="checkbox">
         <span class="slider"></span>
-    </div>
+    </label>
     <p>Yearly</p>
   </div>
 </template>
@@ -27,6 +27,7 @@
     position: absolute;
     left: 0.125rem;
     top: 0.125rem;
+    transition: .4s;
 }
 .slider::before {
     position: absolute;
@@ -35,9 +36,10 @@
     width: 0.75rem;
     height: 0.75rem;
     background-color: var(--white);
+    transition: .4s;
 }
-input:checked .slider::before {
-  transform: translateX(1.9em);
+input:checked + .slider::before {
+  transform: translateX(1rem);
 }
 input {
     width: 0;
