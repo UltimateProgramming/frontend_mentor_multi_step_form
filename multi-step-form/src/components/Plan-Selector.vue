@@ -12,31 +12,37 @@ function onChange(event: Event) {
 
 <template>
   <div class="plan-selector">
-    <p>Monthly</p>
+    <p :class="{'text-gray': formStore.plan !== PlanEnum.Month}">Monthly</p>
     <label class="checkbox">
       <input type="checkbox" @change="onChange($event)" />
       <span class="slider"></span>
     </label>
-    <p>Yearly</p>
+    <p :class="{'text-gray': formStore.plan !== PlanEnum.Year}">Yearly</p>
   </div>
 </template>
 
 <style scoped>
 .plan-selector {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--magnolia);
+  min-width: 100%;
+  min-height: 3rem;
+  border-radius: 0.5rem;
 }
 .checkbox {
   position: relative;
-  width: 2rem;
-  height: 1rem;
+  width: 2.5rem;
+  height: 1.25rem;
   background-color: var(--marine-blue);
   border-radius: 1rem;
 }
 .slider {
   position: absolute;
   left: 0.125rem;
-  top: 0.125rem;
+  top: 0.25rem;
   transition: 0.4s;
 }
 .slider::before {
@@ -49,11 +55,18 @@ function onChange(event: Event) {
   transition: 0.4s;
 }
 input:checked + .slider::before {
-  transform: translateX(1rem);
+  transform: translateX(1.5rem);
 }
 input {
   width: 0;
   height: 0;
   opacity: 0;
+}
+p {
+  font-weight: 500;
+  color: var(--marine-blue);
+}
+.text-gray {
+  color: var(--cool-gray)
 }
 </style>
