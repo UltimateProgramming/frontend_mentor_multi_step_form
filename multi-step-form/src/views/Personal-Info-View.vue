@@ -1,16 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import FormDescription from '@/components/Form-Description.vue';
+import FormHeader from '@/components/Form-Header.vue';
+</script>
 
 <template>
   <div class="personal-info-wrapper">
-    <h2>Personal info</h2>
-    <p class="info">Please provide your name, email address, and phone number.</p>
+    <FormHeader text="Personal info"></FormHeader>
+    <FormDescription
+      text="Please provide your name, email address, and phone number."
+    ></FormDescription>
     <div class="input-fields">
       <label for="name">Name</label>
       <input id="name" type="text" placeholder="e.g. Stephen King" />
       <label for="email">Email Address</label>
       <input id="email" type="email" placeholder="e.g. stephenking@lorem.com" />
       <label for="phone">Phone Number</label>
-      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890"/>
+      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" />
     </div>
   </div>
 </template>
@@ -21,9 +26,6 @@
   flex-direction: column;
   gap: 1rem;
   color: var(--marine-blue);
-}
-.info {
-  color: var(--cool-gray);
 }
 .input-fields {
   display: flex;

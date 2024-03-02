@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import PlanSelection from '../components/Plan-Selection.vue'
 import PlanSelector from '../components/Plan-Selector.vue'
+import FormDescription from '@/components/Form-Description.vue'
+import FormHeader from '@/components/Form-Header.vue';
 </script>
 
 <template>
   <div class="select-plan-view">
-    <h2>Select your plan</h2>
-    <p class="info">You have the option of monthly or yearly billing.</p>
+    <FormHeader text="Select your plan"></FormHeader>
+    <FormDescription
+      text="You have the option of monthly or yearly billing."
+    ></FormDescription>
     <PlanSelection></PlanSelection>
     <PlanSelector></PlanSelector>
   </div>
@@ -17,8 +21,5 @@ import PlanSelector from '../components/Plan-Selector.vue'
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-.info {
-    color: var(--cool-gray);
 }
 </style>
