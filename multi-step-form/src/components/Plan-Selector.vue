@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form-store'
-import { PlanEnum } from '@/enums/PlanEnum'
+import { PlanEnum } from '@/enums/plan-enum'
 
 const formStore = useFormStore();
 

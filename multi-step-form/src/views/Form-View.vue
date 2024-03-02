@@ -3,6 +3,7 @@ import StepperComponent from '@/components/Stepper-Component.vue';
 import FormNavigation from '@/components/Form-Navigation.vue';
 import PersonalInfoView from './Personal-Info-View.vue';
 import SelectPlanView from './Select-Plan-View.vue';
+import PickAddonsView from './Pick-Addons-View.vue';
 import {useFormStore } from '../stores/form-store';
 
 const formStore = useFormStore();
@@ -17,6 +18,7 @@ formStore.maxSteps = 4;
     <div class="card">
       <PersonalInfoView v-if="formStore.currentStep === 1"></PersonalInfoView>
       <SelectPlanView v-if="formStore.currentStep === 2"></SelectPlanView>
+      <PickAddonsView v-if="formStore.currentStep === 3"></PickAddonsView>
     </div>
   </div>
   <FormNavigation></FormNavigation>
