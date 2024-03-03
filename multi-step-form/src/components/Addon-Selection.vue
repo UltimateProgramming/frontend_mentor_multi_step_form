@@ -1,37 +1,45 @@
 <script setup lang="ts">
 import type { Addon } from '@/models/addon'
+import { PlanEnum } from '@/enums/plan-enum';
+import { useFormStore } from '@/stores/form-store';
+import { reactive } from 'vue';
 
-const addons: Addon[] = [
+const addons: Addon[] = reactive([
   {
     title: 'Online Service',
     description: 'Access to multiplayer games',
     priceTagPerMonth: '+1$/mo',
-    priceTagPerYear: '+10$/yr'
+    priceTagPerYear: '+10$/yr',
+    selected: false
   },
   {
     title: 'Larger Storage',
     description: 'Extra 1TB of cloud save',
     priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr'
+    priceTagPerYear: '+20$/yr',
+    selected: false
   },
   {
     title: 'Customizable Profile',
     description: 'Custom theme on your profile',
     priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr'
+    priceTagPerYear: '+20$/yr',
+    selected: false
   }
-]
+])
+
+const formStore = useFormStore();
 </script>
 
 <template>
-  <div class="addon-card" v-for="addon of addons" :key="addon.title">
-    <input type="checkbox">
+  <label class="addon-card" v-for="addon of addons" :key="addon.title" :class="{'blue-border': addon.selected}">
+    <input type="checkbox" @change="addon.selected = !addon.selected">
     <div class="addon-text">
       <p class="title">{{ addon.title }}</p>
       <p class="description">{{ addon.description}}</p>
     </div>
-    <p class="pricetag">{{ addon.priceTagPerMonth }}</p>
-  </div>
+    <p class="pricetag">{{ formStore.plan === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}</p>
+  </label>
 </template>
 
 <style scoped>
@@ -48,8 +56,8 @@ const addons: Addon[] = [
 .addon-card input[type="checkbox"] {
     width: 1.5rem;
 }
-.addon-card input[type="checkbox"]:checked::before {
-    background-color: var(--purplish-blue);
+.addon-card input[type="checkbox"]:checked {
+    accent-color: var(--purplish-blue);
 }
 .addon-text {
   display: flex;
@@ -67,5 +75,11 @@ const addons: Addon[] = [
 .description {
     color: var(--cool-gray);
     font-size: small;
+}
+.blue-border {
+  border: solid 1px var(--purplish-blue);
+}
+label:hover {
+  cursor: pointer;
 }
 </style>

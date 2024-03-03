@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { PlanEnum } from '@/enums/PlanEnum'
+import { PlanEnum } from '@/enums/plan-enum'
 
 export const useFormStore = defineStore('formStore', {
   state: () => ({ currentStep: 1, maxSteps: 1, plan: PlanEnum.Month }),

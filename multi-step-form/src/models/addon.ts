@@ -3,4 +3,5 @@ export interface Addon {
   description: string
   priceTagPerMonth: string
   priceTagPerYear: string
+  selected: boolean
 }
