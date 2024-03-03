@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Addon } from '@/models/addon'
-import { PlanEnum } from '@/enums/plan-enum';
-import { useFormStore } from '@/stores/form-store';
-import { reactive } from 'vue';
+import { PlanEnum } from '@/enums/plan-enum'
+import { useFormStore } from '@/stores/form-store'
+import { reactive } from 'vue'
 
 const addons: Addon[] = reactive([
   {
@@ -28,17 +28,24 @@ const addons: Addon[] = reactive([
   }
 ])
 
-const formStore = useFormStore();
+const formStore = useFormStore()
 </script>
 
 <template>
-  <label class="addon-card" v-for="addon of addons" :key="addon.title" :class="{'blue-border': addon.selected}">
-    <input type="checkbox" @change="addon.selected = !addon.selected">
+  <label
+    class="addon-card"
+    v-for="addon of addons"
+    :key="addon.title"
+    :class="{ 'blue-border': addon.selected }"
+  >
+    <input type="checkbox" @change="addon.selected = !addon.selected" />
     <div class="addon-text">
       <p class="title">{{ addon.title }}</p>
-      <p class="description">{{ addon.description}}</p>
+      <p class="description">{{ addon.description }}</p>
     </div>
-    <p class="pricetag">{{ formStore.plan === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}</p>
+    <p class="pricetag">
+      {{ formStore.plan === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}
+    </p>
   </label>
 </template>
 
@@ -53,11 +60,11 @@ const formStore = useFormStore();
   grid-template-columns: max-content auto max-content;
   gap: 1rem;
 }
-.addon-card input[type="checkbox"] {
-    width: 1.5rem;
+.addon-card input[type='checkbox'] {
+  width: 1.5rem;
 }
-.addon-card input[type="checkbox"]:checked {
-    accent-color: var(--purplish-blue);
+.addon-card input[type='checkbox']:checked {
+  accent-color: var(--purplish-blue);
 }
 .addon-text {
   display: flex;
@@ -65,16 +72,16 @@ const formStore = useFormStore();
   justify-content: center;
 }
 .pricetag {
-    align-self: center;
-    color: var(--purplish-blue)
+  align-self: center;
+  color: var(--purplish-blue);
 }
 .title {
-    font-weight: bold;
-    color: var(--marine-blue);
+  font-weight: bold;
+  color: var(--marine-blue);
 }
 .description {
-    color: var(--cool-gray);
-    font-size: small;
+  color: var(--cool-gray);
+  font-size: small;
 }
 .blue-border {
   border: solid 1px var(--purplish-blue);
