@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { useFormStore } from '@/stores/form-store'
+import { useInfoStore } from '@/stores/info-store'
 import { PlanEnum } from '@/enums/plan-enum'
 
-const formStore = useFormStore()
+const infoStore = useInfoStore()
 
 function onChange(event: Event) {
   const input = event.target as HTMLInputElement
-  input.checked ? formStore.changePlan(PlanEnum.Year) : formStore.changePlan(PlanEnum.Month)
+  input.checked ? infoStore.selectPlanTime(PlanEnum.Year) : infoStore.selectPlanTime(PlanEnum.Month)
 }
 </script>
 
 <template>
   <div class="plan-selector">
-    <p :class="{ 'text-gray': formStore.plan !== PlanEnum.Month }">Monthly</p>
+    <p :class="{ 'text-gray': infoStore.selectedPlanTime !== PlanEnum.Month }">Monthly</p>
     <label class="checkbox">
       <input
         type="checkbox"
         @change="onChange($event)"
-        :checked="formStore.plan === PlanEnum.Year"
+        :checked="infoStore.selectedPlanTime === PlanEnum.Year"
       />
       <span class="slider"></span>
     </label>
-    <p :class="{ 'text-gray': formStore.plan !== PlanEnum.Year }">Yearly</p>
+    <p :class="{ 'text-gray': infoStore.selectedPlanTime !== PlanEnum.Year }">Yearly</p>
   </div>
 </template>
 

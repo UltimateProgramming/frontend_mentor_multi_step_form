@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFormStore } from '@/stores/form-store';
+import { useInfoStore } from '@/stores/info-store';
 import type { Plan } from '../models/plan'
 import { PlanEnum } from '@/enums/plan-enum';
 
@@ -26,20 +26,28 @@ const plans: Plan[] = [
   }
 ]
 
-const formStore = useFormStore();
+const infoStore = useInfoStore();
 </script>
 
 <template>
-  <div v-for="plan of plans" :key="plan.title" class="plan-card">
-    <img :src="plan.iconUrl" :alt="plan.title" />
-    <div class="text-wrapper">
-        <p class="title">{{ plan.title }}</p>
-      <p class="price">{{ formStore.plan === PlanEnum.Month ? plan.priceTagPerMonth : plan.priceTagPerYear}}</p>
-    </div>
-  </div>
+  <form class="plan-form">
+    <label v-for="plan of plans" :key="plan.title" class="plan-card" :class="{'blue-border': plan.title === infoStore.selectedPlan.title}">
+      <input type="radio" name="plan" :value="plan" v-model="infoStore.selectedPlan">
+      <img :src="plan.iconUrl" :alt="plan.title" />
+      <div class="text-wrapper">
+          <p class="title">{{ plan.title }}</p>
+        <p class="price">{{ infoStore.selectedPlanTime === PlanEnum.Month ? plan.priceTagPerMonth : plan.priceTagPerYear}}</p>
+      </div>
+    </label>
+  </form>
 </template>
 
 <style scoped>
+.plan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .plan-card {
   width: 100%;
   min-height: 5rem;
@@ -61,5 +69,11 @@ const formStore = useFormStore();
 .price {
   font-size: small;
   color: var(--cool-gray);
+}
+.blue-border {
+  border: solid 1px var(--purplish-blue);
+}
+input[type="radio"] {
+  display: none;
 }
 </style>

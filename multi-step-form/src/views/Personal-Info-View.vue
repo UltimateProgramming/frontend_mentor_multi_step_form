@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import FormDescription from '@/components/Form-Description.vue';
 import FormHeader from '@/components/Form-Header.vue';
+import { useInfoStore } from '@/stores/info-store';
+
+const infoStore = useInfoStore();
 </script>
 
 <template>
@@ -9,14 +12,14 @@ import FormHeader from '@/components/Form-Header.vue';
     <FormDescription
       text="Please provide your name, email address, and phone number."
     ></FormDescription>
-    <div class="input-fields">
+    <form class="input-fields">
       <label for="name">Name</label>
-      <input id="name" type="text" placeholder="e.g. Stephen King" />
+      <input id="name" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name"/>
       <label for="email">Email Address</label>
-      <input id="email" type="email" placeholder="e.g. stephenking@lorem.com" />
+      <input id="email" type="email" placeholder="e.g. stephenking@lorem.com" v-model="infoStore.email"/>
       <label for="phone">Phone Number</label>
-      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" />
-    </div>
+      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone"/>
+    </form>
   </div>
 </template>
 

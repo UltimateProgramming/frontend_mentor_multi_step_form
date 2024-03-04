@@ -1,34 +1,43 @@
 <script setup lang="ts">
 import type { Addon } from '@/models/addon'
 import { PlanEnum } from '@/enums/plan-enum'
-import { useFormStore } from '@/stores/form-store'
-import { reactive } from 'vue'
+import { useInfoStore } from '@/stores/info-store'
 
-const addons: Addon[] = reactive([
+const addons: Addon[] = [
   {
     title: 'Online Service',
     description: 'Access to multiplayer games',
     priceTagPerMonth: '+1$/mo',
-    priceTagPerYear: '+10$/yr',
-    selected: false
+    priceTagPerYear: '+10$/yr'
   },
   {
     title: 'Larger Storage',
     description: 'Extra 1TB of cloud save',
     priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr',
-    selected: false
+    priceTagPerYear: '+20$/yr'
   },
   {
     title: 'Customizable Profile',
     description: 'Custom theme on your profile',
     priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr',
-    selected: false
+    priceTagPerYear: '+20$/yr'
   }
-])
+]
 
-const formStore = useFormStore()
+const infoStore = useInfoStore();
+
+function onChange(event: Event, selectedAddon: Addon) {
+  const input = event.target as HTMLInputElement;
+  if(input.checked) {
+    infoStore.addAddon(selectedAddon);
+    return;
+  }
+  infoStore.removeAddon(selectedAddon);
+}
+
+function isAddonSelected(addon: Addon): boolean {
+  return infoStore.selectedAddons.find((selectedAddon) => selectedAddon.title === addon.title) ? true : false
+}
 </script>
 
 <template>
@@ -36,15 +45,15 @@ const formStore = useFormStore()
     class="addon-card"
     v-for="addon of addons"
     :key="addon.title"
-    :class="{ 'blue-border': addon.selected }"
+    :class="{ 'blue-border': isAddonSelected(addon) }"
   >
-    <input type="checkbox" @change="addon.selected = !addon.selected" />
+    <input type="checkbox" :checked="isAddonSelected(addon)" @change="onChange($event, addon)" />
     <div class="addon-text">
       <p class="title">{{ addon.title }}</p>
       <p class="description">{{ addon.description }}</p>
     </div>
     <p class="pricetag">
-      {{ formStore.plan === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}
+      {{ infoStore.selectedPlanTime === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}
     </p>
   </label>
 </template>
