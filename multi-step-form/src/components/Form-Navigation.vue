@@ -1,17 +1,24 @@
 <script setup lang="ts">
-import { useFormStore } from '@/stores/form-store';
+import { useFormStore } from '@/stores/form-store'
 
-const formStore = useFormStore();
-
+const formStore = useFormStore()
 </script>
 
 <template>
   <div class="container">
     <div class="back-btn-wrapper">
-      <button v-if="formStore.currentStep !== 1" class="back-btn" @click="formStore.previousStep()">Go Back</button>
+      <button v-if="formStore.currentStep !== 1" class="back-btn" @click="formStore.previousStep()">
+        Go Back
+      </button>
     </div>
     <div class="next-btn-wrapper">
-      <button v-if="formStore.currentStep !== formStore.maxSteps" class="next-btn" @click="formStore.nextStep()">Next Step</button>
+      <button
+        v-if="formStore.currentStep !== formStore.maxSteps"
+        class="next-btn"
+        @click="formStore.nextStep()"
+      >
+        Next Step
+      </button>
     </div>
   </div>
 </template>
@@ -21,8 +28,6 @@ const formStore = useFormStore();
   background-color: var(--white);
   width: 100%;
   height: 5rem;
-  position: fixed;
-  bottom: 0;
   display: grid;
   grid-template-columns: auto auto;
   padding: 0 1rem 0 1rem;

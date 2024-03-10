@@ -24,19 +24,21 @@ const addons: Addon[] = [
   }
 ]
 
-const infoStore = useInfoStore();
+const infoStore = useInfoStore()
 
 function onChange(event: Event, selectedAddon: Addon) {
-  const input = event.target as HTMLInputElement;
-  if(input.checked) {
-    infoStore.addAddon(selectedAddon);
-    return;
+  const input = event.target as HTMLInputElement
+  if (input.checked) {
+    infoStore.addAddon(selectedAddon)
+    return
   }
-  infoStore.removeAddon(selectedAddon);
+  infoStore.removeAddon(selectedAddon)
 }
 
 function isAddonSelected(addon: Addon): boolean {
-  return infoStore.selectedAddons.find((selectedAddon) => selectedAddon.title === addon.title) ? true : false
+  return infoStore.selectedAddons.find((selectedAddon) => selectedAddon.title === addon.title)
+    ? true
+    : false
 }
 </script>
 
@@ -53,7 +55,11 @@ function isAddonSelected(addon: Addon): boolean {
       <p class="description">{{ addon.description }}</p>
     </div>
     <p class="pricetag">
-      {{ infoStore.selectedPlanTime === PlanEnum.Month ? addon.priceTagPerMonth : addon.priceTagPerYear }}
+      {{
+        infoStore.selectedPlanTime === PlanEnum.Month
+          ? addon.priceTagPerMonth
+          : addon.priceTagPerYear
+      }}
     </p>
   </label>
 </template>

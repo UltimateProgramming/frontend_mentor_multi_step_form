@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FormDescription from '@/components/Form-Description.vue';
-import FormHeader from '@/components/Form-Header.vue';
-import AddonSelection from '@/components/Addon-Selection.vue';
+import FormDescription from '@/components/Form-Description.vue'
+import FormHeader from '@/components/Form-Header.vue'
+import AddonSelection from '@/components/Addon-Selection.vue'
 </script>
 
 <template>
