@@ -13,6 +13,13 @@ export const useFormStore = defineStore('formStore', {
       if (this.currentStep > 1) {
         this.currentStep -= 1
       }
+    },
+
+    setStep(step: number) {
+      if (step > this.maxSteps || step < 1) {
+        return
+      }
+      this.currentStep = step
     }
   }
 })

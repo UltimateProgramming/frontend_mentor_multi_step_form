@@ -7,20 +7,20 @@ const addons: Addon[] = [
   {
     title: 'Online Service',
     description: 'Access to multiplayer games',
-    priceTagPerMonth: '+1$/mo',
-    priceTagPerYear: '+10$/yr'
+    pricePerMonth: 1,
+    pricePerYear: 10
   },
   {
     title: 'Larger Storage',
     description: 'Extra 1TB of cloud save',
-    priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr'
+    pricePerMonth: 2,
+    pricePerYear: 20
   },
   {
     title: 'Customizable Profile',
     description: 'Custom theme on your profile',
-    priceTagPerMonth: '+2$/mo',
-    priceTagPerYear: '+20$/yr'
+    pricePerMonth: 2,
+    pricePerYear: 20
   }
 ]
 
@@ -54,12 +54,11 @@ function isAddonSelected(addon: Addon): boolean {
       <p class="title">{{ addon.title }}</p>
       <p class="description">{{ addon.description }}</p>
     </div>
-    <p class="pricetag">
-      {{
+    <p class="pricetag">+${{
         infoStore.selectedPlanTime === PlanEnum.Month
-          ? addon.priceTagPerMonth
-          : addon.priceTagPerYear
-      }}
+          ? addon.pricePerMonth
+          : addon.pricePerYear
+      }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}
     </p>
   </label>
 </template>

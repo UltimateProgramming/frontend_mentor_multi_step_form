@@ -4,6 +4,7 @@ import FormNavigation from '@/components/Form-Navigation.vue'
 import PersonalInfoView from './Personal-Info-View.vue'
 import SelectPlanView from './Select-Plan-View.vue'
 import PickAddonsView from './Pick-Addons-View.vue'
+import FinishUpView from './Finish-Up-View.vue'
 import { useFormStore } from '../stores/form-store'
 
 const formStore = useFormStore()
@@ -27,6 +28,7 @@ formStore.maxSteps = 4
       ></PersonalInfoView>
       <SelectPlanView v-if="formStore.currentStep === 2" class="padding-desktop"></SelectPlanView>
       <PickAddonsView v-if="formStore.currentStep === 3" class="padding-desktop"></PickAddonsView>
+      <FinishUpView v-if="formStore.currentStep === 4" class="padding-desktop"></FinishUpView>
       <FormNavigation class="navigation-desktop"></FormNavigation>
     </div>
   </div>
@@ -41,7 +43,7 @@ formStore.maxSteps = 4
   min-height: 20rem;
   max-height: 50rem;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
 }
 .content {
   min-width: 100%;

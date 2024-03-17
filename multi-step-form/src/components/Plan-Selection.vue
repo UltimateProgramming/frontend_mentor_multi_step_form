@@ -9,20 +9,20 @@ const plans: Plan[] = [
   {
     iconUrl: `${iconBaseUrl}/icon-arcade.svg`,
     title: 'Arcade',
-    priceTagPerMonth: '$9/mo',
-    priceTagPerYear: '$90/yr'
+    pricePerMonth: 9,
+    pricePerYear: 90
   },
   {
     iconUrl: `${iconBaseUrl}/icon-advanced.svg`,
     title: 'Advanced',
-    priceTagPerMonth: '$12/mo',
-    priceTagPerYear: '$120/yr'
+    pricePerMonth: 12,
+    pricePerYear: 120
   },
   {
     iconUrl: `${iconBaseUrl}/icon-pro.svg`,
     title: 'Pro',
-    priceTagPerMonth: '$15/mo',
-    priceTagPerYear: '$150/yr'
+    pricePerMonth: 15,
+    pricePerYear: 150
   }
 ]
 
@@ -42,11 +42,11 @@ const infoStore = useInfoStore()
       <div class="text-wrapper">
         <p class="title">{{ plan.title }}</p>
         <p class="price">
-          {{
+          ${{
             infoStore.selectedPlanTime === PlanEnum.Month
-              ? plan.priceTagPerMonth
-              : plan.priceTagPerYear
-          }}
+              ? plan.pricePerMonth
+              : plan.pricePerYear
+          }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}
         </p>
       </div>
     </label>
