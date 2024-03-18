@@ -11,13 +11,20 @@ const formStore = useFormStore()
         Go Back
       </button>
     </div>
-    <div class="next-btn-wrapper">
+    <div class="rightside-btn-wrapper">
       <button
         v-if="formStore.currentStep !== formStore.maxSteps"
         class="next-btn"
         @click="formStore.nextStep()"
       >
         Next Step
+      </button>
+      <button
+        v-if="formStore.currentStep === formStore.maxSteps"
+        class="confirm-btn"
+        @click="$router.push('/success')"
+      >
+        Confirm
       </button>
     </div>
   </div>
@@ -45,12 +52,13 @@ const formStore = useFormStore()
 .back-btn {
   background-color: var(--white);
   border: none;
+  color: var(--cool-gray)
 }
 .back-btn:hover {
   cursor: pointer;
   background-color: var(--light-gray);
 }
-.next-btn-wrapper {
+.rightside-btn-wrapper {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -63,7 +71,16 @@ const formStore = useFormStore()
 }
 .next-btn:hover {
   cursor: pointer;
-  background-color: var(--marine-blue);
+  opacity: 0.75;
+}
+.confirm-btn {
+  background-color: var(--purplish-blue);
+  color: var(--white);
+  border: none;
+  justify-self: end;
+}
+.confirm-btn:hover {
+  cursor: pointer;
   opacity: 0.75;
 }
 </style>

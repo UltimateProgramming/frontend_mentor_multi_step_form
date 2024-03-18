@@ -41,7 +41,7 @@ function calcTotal(): number {
         <div class="plan-addon-list-item">
             <div class="plan-description">
                 <p class="marine-blue bold">{{ infoStore.selectedPlan.title }} {{ infoStore.selectedPlanTime === PlanEnum.Month ? '(Monthly)' : '(Yearly)'}}</p>
-                <a class="cool-gray" href="#" @click="formStore.setStep(2)">change</a>
+                <a class="cool-gray" href="#" @click="formStore.setStep(2)">Change</a>
             </div>
             <p class="marine-blue bold">${{ infoStore.selectedPlanTime === PlanEnum.Month ? infoStore.selectedPlan.pricePerMonth : infoStore.selectedPlan.pricePerYear }}/{{infoStore.selectedPlanTime === PlanEnum.Month ? 'mo': 'yr'}}</p>
         </div>
@@ -53,7 +53,7 @@ function calcTotal(): number {
     </div>
     <div class="total">
         <p class="cool-gray">Total {{ infoStore.selectedPlanTime === PlanEnum.Month ? '(per month)' : '(per year)' }}</p>
-        <p class="marine-blue">${{ calcTotal() }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}</p>
+        <p class="bold purplish-blue">${{ calcTotal() }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}</p>
     </div>
   </div>
 </template>
@@ -98,6 +98,9 @@ function calcTotal(): number {
 }
 .marine-blue {
     color: var(--marine-blue);
+}
+.purplish-blue {
+    color: var(--purplish-blue);
 }
 .bold {
     font-weight: 700;

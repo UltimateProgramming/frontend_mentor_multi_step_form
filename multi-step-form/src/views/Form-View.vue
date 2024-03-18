@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import StepperComponent from '@/components/Stepper-Component.vue'
 import FormNavigation from '@/components/Form-Navigation.vue'
-import PersonalInfoView from './Personal-Info-View.vue'
-import SelectPlanView from './Select-Plan-View.vue'
-import PickAddonsView from './Pick-Addons-View.vue'
-import FinishUpView from './Finish-Up-View.vue'
 import { useFormStore } from '../stores/form-store'
 
 const formStore = useFormStore()
-formStore.maxSteps = 4
+formStore.maxSteps = 4;
 </script>
 
 <template>
@@ -22,17 +18,10 @@ formStore.maxSteps = 4
         :maxSteps="formStore.maxSteps"
         :direction="'column'"
       ></StepperComponent>
-      <PersonalInfoView
-        v-if="formStore.currentStep === 1"
-        class="padding-desktop"
-      ></PersonalInfoView>
-      <SelectPlanView v-if="formStore.currentStep === 2" class="padding-desktop"></SelectPlanView>
-      <PickAddonsView v-if="formStore.currentStep === 3" class="padding-desktop"></PickAddonsView>
-      <FinishUpView v-if="formStore.currentStep === 4" class="padding-desktop"></FinishUpView>
-      <FormNavigation class="navigation-desktop"></FormNavigation>
+      <RouterView></RouterView>
     </div>
   </div>
-  <FormNavigation class="navigation-mobile"></FormNavigation>
+  <FormNavigation v-if="$router.currentRoute.value.path !== '/success'" class="navigation-mobile"></FormNavigation>
 </template>
 
 <style scoped>
@@ -55,21 +44,18 @@ formStore.maxSteps = 4
   display: flex;
   flex-direction: column;
 }
+.stepper-desktop {
+  display: none;
+}
 .stepper-mobile {
   display: flex;
   justify-content: center;
   margin: 1rem;
 }
-.stepper-desktop {
-  display: none;
-}
 .navigation-mobile {
   display: grid;
   position: fixed;
   bottom: 0;
-}
-.navigation-desktop {
-  display: none;
 }
 @media (min-width: 750px) {
   .content {
@@ -100,11 +86,6 @@ formStore.maxSteps = 4
   }
   .navigation-mobile {
     display: none;
-  }
-  .navigation-desktop {
-    display: grid;
-    grid-column: 2;
-    grid-row: 2;
   }
   .padding-desktop {
     padding: 3rem;
