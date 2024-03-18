@@ -54,10 +54,9 @@ function isAddonSelected(addon: Addon): boolean {
       <p class="title">{{ addon.title }}</p>
       <p class="description">{{ addon.description }}</p>
     </div>
-    <p class="pricetag">+${{
-        infoStore.selectedPlanTime === PlanEnum.Month
-          ? addon.pricePerMonth
-          : addon.pricePerYear
+    <p class="pricetag">
+      +${{
+        infoStore.selectedPlanTime === PlanEnum.Month ? addon.pricePerMonth : addon.pricePerYear
       }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}
     </p>
   </label>

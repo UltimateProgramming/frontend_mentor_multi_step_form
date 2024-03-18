@@ -52,7 +52,7 @@ const formStore = useFormStore()
 .back-btn {
   background-color: var(--white);
   border: none;
-  color: var(--cool-gray)
+  color: var(--cool-gray);
 }
 .back-btn:hover {
   cursor: pointer;

@@ -4,7 +4,7 @@ import FormNavigation from '@/components/Form-Navigation.vue'
 import { useFormStore } from '../stores/form-store'
 
 const formStore = useFormStore()
-formStore.maxSteps = 4;
+formStore.maxSteps = 4
 </script>
 
 <template>
@@ -21,7 +21,10 @@ formStore.maxSteps = 4;
       <RouterView></RouterView>
     </div>
   </div>
-  <FormNavigation v-if="$router.currentRoute.value.path !== '/success'" class="navigation-mobile"></FormNavigation>
+  <FormNavigation
+    v-if="$router.currentRoute.value.path !== '/success'"
+    class="navigation-mobile"
+  ></FormNavigation>
 </template>
 
 <style scoped>

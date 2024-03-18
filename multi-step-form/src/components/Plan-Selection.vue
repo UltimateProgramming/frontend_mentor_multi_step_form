@@ -43,9 +43,7 @@ const infoStore = useInfoStore()
         <p class="title">{{ plan.title }}</p>
         <p class="price">
           ${{
-            infoStore.selectedPlanTime === PlanEnum.Month
-              ? plan.pricePerMonth
-              : plan.pricePerYear
+            infoStore.selectedPlanTime === PlanEnum.Month ? plan.pricePerMonth : plan.pricePerYear
           }}/{{ infoStore.selectedPlanTime === PlanEnum.Month ? 'mo' : 'yr' }}
         </p>
       </div>
