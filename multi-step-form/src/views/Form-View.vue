@@ -72,7 +72,11 @@ formStore.maxSteps = 4
   .card {
     display: grid;
     grid-template-columns: 15rem auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto max-content;
+    min-width: 10rem;
+    max-width: 60rem;
+    min-height: 40rem;
+    max-height: 50rem;
   }
   .stepper-desktop {
     display: flex;
