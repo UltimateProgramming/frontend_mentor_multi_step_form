@@ -47,7 +47,7 @@ function isAddonSelected(addon: Addon): boolean {
     class="addon-card"
     v-for="addon of addons"
     :key="addon.title"
-    :class="{ 'blue-border': isAddonSelected(addon) }"
+    :class="{ 'blue-border darker-background': isAddonSelected(addon) }"
   >
     <input type="checkbox" :checked="isAddonSelected(addon)" @change="onChange($event, addon)" />
     <div class="addon-text">
@@ -72,6 +72,9 @@ function isAddonSelected(addon: Addon): boolean {
   display: grid;
   grid-template-columns: max-content auto max-content;
   gap: 1rem;
+}
+.addon-card:hover {
+  border: solid 1px var(--purplish-blue);
 }
 .addon-card input[type='checkbox'] {
   width: 1.5rem;
@@ -98,6 +101,9 @@ function isAddonSelected(addon: Addon): boolean {
 }
 .blue-border {
   border: solid 1px var(--purplish-blue);
+}
+.darker-background {
+  background-color: var(--alabaster);
 }
 label:hover {
   cursor: pointer;

@@ -35,7 +35,7 @@ const infoStore = useInfoStore()
       v-for="plan of plans"
       :key="plan.title"
       class="plan-card"
-      :class="{ 'blue-border': plan.title === infoStore.selectedPlan.title }"
+      :class="{ 'blue-border darker-background': plan.title === infoStore.selectedPlan.title }"
     >
       <input type="radio" name="plan" :value="plan" v-model="infoStore.selectedPlan" />
       <img :src="plan.iconUrl" :alt="plan.title" />
@@ -68,6 +68,9 @@ const infoStore = useInfoStore()
   gap: 1rem;
   cursor: pointer;
 }
+.plan-card:hover {
+  border: solid 1px var(--purplish-blue);
+}
 .text-wrapper {
   display: flex;
   flex-direction: column;
@@ -82,6 +85,9 @@ const infoStore = useInfoStore()
 }
 .blue-border {
   border: solid 1px var(--purplish-blue);
+}
+.darker-background {
+  background-color: var(--alabaster);
 }
 @media (min-width: 750px) {
   .plan-form {
