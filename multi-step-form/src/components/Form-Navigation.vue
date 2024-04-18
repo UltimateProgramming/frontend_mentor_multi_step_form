@@ -21,9 +21,7 @@ function updateValidityAndMoveToNextStep() {
     </div>
     <div class="rightside-btn-wrapper">
       <button
-        v-if="formStore.currentStep !== formStore.maxSteps" 
-        :class="{'disabled' : !validationStore.isCurrentStepValid, 'next-btn' : validationStore.isCurrentStepValid}"
-        :disabled="!validationStore.isCurrentStepValid"
+        v-if="formStore.currentStep !== formStore.maxSteps && validationStore.isCurrentStepValid"
         class="next-btn"
         @click="updateValidityAndMoveToNextStep()"
       >
@@ -92,8 +90,5 @@ function updateValidityAndMoveToNextStep() {
 .confirm-btn:hover {
   cursor: pointer;
   opacity: 0.75;
-}
-.disabled {
-  background-color: aqua;
 }
 </style>

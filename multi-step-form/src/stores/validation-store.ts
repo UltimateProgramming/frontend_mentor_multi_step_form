@@ -34,6 +34,14 @@ export const useValidationStore = defineStore('validationStore', {
       return
     },
 
+    getError(key: string): string {
+      if (this.errors.get(key) && this.touched.get(key)) {
+        return this.errors.get(key)
+      }
+
+      return ''
+    },
+
     setError(key: string, value: unknown) {
       this.errors.set(key, value)
     },

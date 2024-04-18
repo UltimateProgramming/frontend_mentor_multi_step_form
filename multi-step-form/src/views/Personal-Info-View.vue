@@ -54,19 +54,29 @@ onMounted(() => {
       text="Please provide your name, email address, and phone number."
     ></FormDescription>
     <form class="input-fields">
-      <label for="name">Name</label>
-      <input id="name" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name" @change="onNameChange($event)" @blur="onBlur('name')"/>
-      <label for="email">Email Address</label>
+      <div class="label-wrapper">
+        <label for="name">Name</label>
+        <label class="error-label" for="name">{{ validationStore.getError('name') }}</label>
+      </div>
+      <input id="name" :class="{'red-outline' : validationStore.getError('name')}" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name" @change="onNameChange($event)" @blur="onBlur('name')"/>
+      <div class="label-wrapper">
+        <label for="email">Email Address</label>
+        <label class="error-label" for="email">{{ validationStore.getError('email') }}</label>
+      </div>
       <input
         id="email"
+        :class="{'red-outline' : validationStore.getError('email')}"
         type="email"
         placeholder="e.g. stephenking@lorem.com"
         v-model="infoStore.email"
         @change="onEmailChange($event)"
         @blur="onBlur('email')"
       />
-      <label for="phone">Phone Number</label>
-      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone" @change="onPhoneChange($event)" @blur="onBlur('phone')"/>
+      <div class="label-wrapper">
+        <label for="phone">Phone Number</label>
+        <label class="error-label" for="phone">{{ validationStore.getError('phone') }}</label>
+      </div>
+      <input id="phone" :class="{'red-outline' : validationStore.getError('phone')}" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone" @change="onPhoneChange($event)" @blur="onBlur('phone')"/>
     </form>
   </div>
 </template>
@@ -92,5 +102,18 @@ onMounted(() => {
   font-size: medium;
   font-weight: 700;
   margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0 0.5rem 0
+}
+.error-label {
+  color: var(--strawberry-red);
+  font-weight: bold;
+}
+.red-outline {
+  border-color: var(--strawberry-red);
 }
 </style>
