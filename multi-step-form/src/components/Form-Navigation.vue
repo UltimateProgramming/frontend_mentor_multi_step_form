@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form-store'
-import { useValidationStore } from '@/stores/validation-store';
+import { useValidationStore } from '@/stores/validation-store'
 
 const formStore = useFormStore()
-const validationStore = useValidationStore();
+const validationStore = useValidationStore()
 
 function updateValidityAndMoveToNextStep() {
   if (validationStore.isCurrentStepValid) {

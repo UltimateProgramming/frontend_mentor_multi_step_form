@@ -3,13 +3,13 @@ import FormDescription from '@/components/Form-Description.vue'
 import FormHeader from '@/components/Form-Header.vue'
 import { useInfoStore } from '@/stores/info-store'
 import { useValidationStore } from '@/stores/validation-store'
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 
-const infoStore = useInfoStore();
-const validationStore = useValidationStore();
+const infoStore = useInfoStore()
+const validationStore = useValidationStore()
 
 function onNameChange(event: Event) {
-  const input = event.target as HTMLInputElement;
+  const input = event.target as HTMLInputElement
   if (!input.value) {
     validationStore.setError('name', 'This field is required')
   } else {
@@ -18,7 +18,7 @@ function onNameChange(event: Event) {
 }
 
 function onEmailChange(event: Event) {
-  const input = event.target as HTMLInputElement;
+  const input = event.target as HTMLInputElement
   if (!input.value) {
     validationStore.setError('email', 'This field is required')
   } else {
@@ -27,9 +27,9 @@ function onEmailChange(event: Event) {
 }
 
 function onPhoneChange(event: Event) {
-  const input = event.target as HTMLInputElement;
+  const input = event.target as HTMLInputElement
   if (!input.value) {
-    validationStore.setError('phone', 'This field is required');
+    validationStore.setError('phone', 'This field is required')
   } else {
     validationStore.removeError('phone')
   }
@@ -41,9 +41,9 @@ function onBlur(source: string) {
 }
 
 onMounted(() => {
-  validationStore.setError('name', 'This field is required');
-  validationStore.setError('email', 'This field is required');
-  validationStore.setError('phone', 'This field is required');
+  validationStore.setError('name', 'This field is required')
+  validationStore.setError('email', 'This field is required')
+  validationStore.setError('phone', 'This field is required')
 })
 </script>
 
@@ -58,14 +58,22 @@ onMounted(() => {
         <label for="name">Name</label>
         <label class="error-label" for="name">{{ validationStore.getError('name') }}</label>
       </div>
-      <input id="name" :class="{'red-outline' : validationStore.getError('name')}" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name" @change="onNameChange($event)" @blur="onBlur('name')"/>
+      <input
+        id="name"
+        :class="{ 'red-outline': validationStore.getError('name') }"
+        type="text"
+        placeholder="e.g. Stephen King"
+        v-model="infoStore.name"
+        @change="onNameChange($event)"
+        @blur="onBlur('name')"
+      />
       <div class="label-wrapper">
         <label for="email">Email Address</label>
         <label class="error-label" for="email">{{ validationStore.getError('email') }}</label>
       </div>
       <input
         id="email"
-        :class="{'red-outline' : validationStore.getError('email')}"
+        :class="{ 'red-outline': validationStore.getError('email') }"
         type="email"
         placeholder="e.g. stephenking@lorem.com"
         v-model="infoStore.email"
@@ -76,7 +84,15 @@ onMounted(() => {
         <label for="phone">Phone Number</label>
         <label class="error-label" for="phone">{{ validationStore.getError('phone') }}</label>
       </div>
-      <input id="phone" :class="{'red-outline' : validationStore.getError('phone')}" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone" @change="onPhoneChange($event)" @blur="onBlur('phone')"/>
+      <input
+        id="phone"
+        :class="{ 'red-outline': validationStore.getError('phone') }"
+        type="tel"
+        placeholder="e.g. +1 234 567 890"
+        v-model="infoStore.phone"
+        @change="onPhoneChange($event)"
+        @blur="onBlur('phone')"
+      />
     </form>
   </div>
 </template>
@@ -107,7 +123,7 @@ onMounted(() => {
 .label-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0 0.5rem 0
+  padding: 0.5rem 0 0.5rem 0;
 }
 .error-label {
   color: var(--strawberry-red);

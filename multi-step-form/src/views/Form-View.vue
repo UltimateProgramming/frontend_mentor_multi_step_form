@@ -2,18 +2,21 @@
 import StepperComponent from '@/components/Stepper-Component.vue'
 import FormNavigation from '@/components/Form-Navigation.vue'
 import { useFormStore } from '../stores/form-store'
-import { watch } from 'vue';
-import { useInfoStore } from '@/stores/info-store';
-import { useValidationStore } from '@/stores/validation-store';
+import { watch } from 'vue'
+import { useInfoStore } from '@/stores/info-store'
+import { useValidationStore } from '@/stores/validation-store'
 
-const formStore = useFormStore();
-const validationStore = useValidationStore();
-const infoStore = useInfoStore();
-formStore.maxSteps = 4;
+const formStore = useFormStore()
+const validationStore = useValidationStore()
+const infoStore = useInfoStore()
+formStore.maxSteps = 4
 
-watch([infoStore, validationStore.errors, validationStore.touched, () => formStore.getCurrentStep], () => {
-  validationStore.updateCurrentStepValidity();
-})
+watch(
+  [infoStore, validationStore.errors, validationStore.touched, () => formStore.getCurrentStep],
+  () => {
+    validationStore.updateCurrentStepValidity()
+  }
+)
 </script>
 
 <template>
