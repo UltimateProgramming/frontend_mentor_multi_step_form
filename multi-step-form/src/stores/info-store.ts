@@ -22,6 +22,12 @@ export const useInfoStore = defineStore('infoStore', {
     },
     getPhone(): string {
       return this.phone
+    },
+    getSelectedPlan(): Plan {
+      return this.selectedPlan
+    },
+    getSelectedAddons(): Addon[] {
+      return this.selectedAddons
     }
   },
   actions: {

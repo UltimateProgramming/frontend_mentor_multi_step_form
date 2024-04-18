@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form-store'
 import { useValidationStore } from '@/stores/validation-store';
-import { onMounted } from 'vue';
 
 const formStore = useFormStore()
 const validationStore = useValidationStore();
 
 function updateValidityAndMoveToNextStep() {
-  validationStore.updateCurrentStepValidity();
   if (validationStore.isCurrentStepValid) {
     formStore.nextStep()
   }

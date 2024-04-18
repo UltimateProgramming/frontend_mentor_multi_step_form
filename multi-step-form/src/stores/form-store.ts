@@ -2,6 +2,11 @@ import { defineStore } from 'pinia'
 
 export const useFormStore = defineStore('formStore', {
   state: () => ({ currentStep: 1, maxSteps: 1 }),
+  getters: {
+    getCurrentStep(): number {
+      return this.currentStep
+    }
+  },
   actions: {
     nextStep() {
       if (this.currentStep < this.maxSteps) {

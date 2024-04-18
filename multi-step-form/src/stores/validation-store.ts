@@ -18,7 +18,7 @@ export const useValidationStore = defineStore('validationStore', {
           break
 
         case 2:
-          if (infoStore.selectedPlan === undefined) {
+          if (Object.keys(infoStore.selectedPlan).length === 0) {
             this.isCurrentStepValid = false
             return
           }
