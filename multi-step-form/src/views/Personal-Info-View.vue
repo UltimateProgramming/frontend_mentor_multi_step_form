@@ -2,8 +2,49 @@
 import FormDescription from '@/components/Form-Description.vue'
 import FormHeader from '@/components/Form-Header.vue'
 import { useInfoStore } from '@/stores/info-store'
+import { useValidationStore } from '@/stores/validation-store'
+import { onMounted } from 'vue';
 
-const infoStore = useInfoStore()
+const infoStore = useInfoStore();
+const validationStore = useValidationStore();
+
+function onNameChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (!input.value) {
+    validationStore.setError('name', 'This field is required')
+  } else {
+    validationStore.removeError('name')
+  }
+}
+
+function onEmailChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (!input.value) {
+    validationStore.setError('email', 'This field is required')
+  } else {
+    validationStore.removeError('email')
+  }
+}
+
+function onPhoneChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (!input.value) {
+    validationStore.setError('phone', 'This field is required');
+  } else {
+    validationStore.removeError('phone')
+  }
+}
+
+function onBlur(source: string) {
+  validationStore.setTouched(source, true)
+  console.log('test')
+}
+
+onMounted(() => {
+  validationStore.setError('name', 'This field is required');
+  validationStore.setError('email', 'This field is required');
+  validationStore.setError('phone', 'This field is required');
+})
 </script>
 
 <template>
@@ -14,16 +55,18 @@ const infoStore = useInfoStore()
     ></FormDescription>
     <form class="input-fields">
       <label for="name">Name</label>
-      <input id="name" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name" />
+      <input id="name" type="text" placeholder="e.g. Stephen King" v-model="infoStore.name" @change="onNameChange($event)" @blur="onBlur('name')"/>
       <label for="email">Email Address</label>
       <input
         id="email"
         type="email"
         placeholder="e.g. stephenking@lorem.com"
         v-model="infoStore.email"
+        @change="onEmailChange($event)"
+        @blur="onBlur('email')"
       />
       <label for="phone">Phone Number</label>
-      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone" />
+      <input id="phone" type="tel" placeholder="e.g. +1 234 567 890" v-model="infoStore.phone" @change="onPhoneChange($event)" @blur="onBlur('phone')"/>
     </form>
   </div>
 </template>

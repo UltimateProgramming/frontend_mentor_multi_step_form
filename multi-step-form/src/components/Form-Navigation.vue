@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form-store'
+import { useValidationStore } from '@/stores/validation-store';
+import { onMounted } from 'vue';
 
 const formStore = useFormStore()
+const validationStore = useValidationStore();
+
+function updateValidityAndMoveToNextStep() {
+  validationStore.updateCurrentStepValidity();
+  if (validationStore.isCurrentStepValid) {
+    formStore.nextStep()
+  }
+}
 </script>
 
 <template>
@@ -13,9 +23,11 @@ const formStore = useFormStore()
     </div>
     <div class="rightside-btn-wrapper">
       <button
-        v-if="formStore.currentStep !== formStore.maxSteps"
+        v-if="formStore.currentStep !== formStore.maxSteps" 
+        :class="{'disabled' : !validationStore.isCurrentStepValid, 'next-btn' : validationStore.isCurrentStepValid}"
+        :disabled="!validationStore.isCurrentStepValid"
         class="next-btn"
-        @click="formStore.nextStep()"
+        @click="updateValidityAndMoveToNextStep()"
       >
         Next Step
       </button>
@@ -82,5 +94,8 @@ const formStore = useFormStore()
 .confirm-btn:hover {
   cursor: pointer;
   opacity: 0.75;
+}
+.disabled {
+  background-color: aqua;
 }
 </style>

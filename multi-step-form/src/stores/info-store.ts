@@ -12,6 +12,18 @@ export const useInfoStore = defineStore('infoStore', {
     selectedPlanTime: PlanEnum.Month as PlanEnum,
     selectedAddons: [] as Addon[]
   }),
+
+  getters: {
+    getName(): string {
+      return this.name
+    },
+    getEmail(): string {
+      return this.email
+    },
+    getPhone(): string {
+      return this.phone
+    }
+  },
   actions: {
     addName(name: string): void {
       this.name = name
