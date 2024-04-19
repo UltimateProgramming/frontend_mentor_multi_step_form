@@ -34,12 +34,12 @@ jobs:
           node-version: 18
           cache: "npm"
           cache-dependency-path: multi-step-form/package-lock.json
-      - name: Change to correct folder
-        run: cd multi-step-form/
       - name: Install dependencies
         run: npm install
+        working-directory: multi-step-form
       - name: Build
         run: npm run build
+        working-directory: multi-step-form
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
