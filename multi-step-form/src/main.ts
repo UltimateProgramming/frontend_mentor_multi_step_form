@@ -15,7 +15,10 @@ const routes = [
   { path: '/', component: FormCardView },
   { path: '/success', component: SuccessView }
 ]
-const router = createRouter({ history: createWebHistory(), routes })
+const router = createRouter({
+  history: createWebHistory('/frontend_mentor_multi_step_form/'),
+  routes
+})
 
 app.use(pinia)
 app.use(router)
