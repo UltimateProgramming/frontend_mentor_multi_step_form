@@ -44,6 +44,9 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        working-directory: multi-step-form
+        with:
+          path: "./dist"
 
   # Deployment job
   deploy:
