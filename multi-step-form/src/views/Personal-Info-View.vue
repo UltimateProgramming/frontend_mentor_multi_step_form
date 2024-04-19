@@ -37,7 +37,6 @@ function onPhoneChange(event: Event) {
 
 function onBlur(source: string) {
   validationStore.setTouched(source, true)
-  console.log('test')
 }
 
 onMounted(() => {
